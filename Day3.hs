@@ -42,7 +42,7 @@ binDigit = digitToInt <$> oneOf "01"
 eol = char '\n'
 
 parseInput:: IO [[Int]]
-parseInput = parseFromFile day3File "inp/003.txt" >>= either report return
+parseInput = parseFromFile day3File "inp/03.txt" >>= either report return
   where 
     report err = do
       hPutStrLn stderr $ "Error: " ++ show err

@@ -25,7 +25,7 @@ parseText inp = (dir, amount)
 
 readInput:: IO [(Direction, Int)]
 readInput = do
-  contents <- readFile "inp/002.txt"
+  contents <- readFile "inp/02.txt"
   return $ map parseText $ lines contents
 
 part1 = do

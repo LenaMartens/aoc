@@ -66,7 +66,7 @@ eol    = char '\n'
 space  = char ' '
 
 parseInput:: IO ([Int], [BingoCard])
-parseInput = parseFromFile day4File "inp/004.txt" >>= either report return
+parseInput = parseFromFile day4File "inp/04.txt" >>= either report return
   where 
     report err = do
       hPutStrLn stderr $ "Error: " ++ show err
