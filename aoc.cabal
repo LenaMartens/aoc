@@ -1,0 +1,23 @@
+cabal-version:       >=1.10
+name:                aoc
+version:             0.1.0.0
+license-file:        LICENSE
+author: Lena Martens
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+executable aoc
+  main-is:             Main.hs
+  other-modules: 
+                Day2,
+                Day3,
+                Day4,
+                Day5
+  build-depends:
+      base >=4.13 && <4.14,
+      split,
+      parsec
+
+
+  -- hs-source-dirs:
+  default-language:    Haskell2010
