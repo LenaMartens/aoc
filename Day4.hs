@@ -1,9 +1,8 @@
 module Day4 where
 
 import Data.List
-import Text.ParserCombinators.Parsec hiding (space)
-import System.Exit
-import System.IO
+import Text.Parsec hiding (space)
+import qualified Parser
 
 hasWon:: TrackedBingoCard -> Bool
 hasWon (t, _) = fullRow || fullColumn
@@ -48,7 +47,7 @@ type BingoTracking = [[Bool]]
 type TrackedBingoCard = (BingoTracking, BingoCard)
 
 -- PARSER --
-day4File = do 
+file = do 
   firstLine <- calledNumbers <* eol
   eol
   cards <- many1 bingoCard
@@ -66,11 +65,7 @@ eol    = char '\n'
 space  = char ' '
 
 parseInput:: IO ([Int], [BingoCard])
-parseInput = parseFromFile day4File "inp/04.txt" >>= either report return
-  where 
-    report err = do
-      hPutStrLn stderr $ "Error: " ++ show err
-      exitFailure
+parseInput = Parser.parseFile file "04.txt"
 
 -- solutions
 part1 = do

@@ -1,9 +1,8 @@
 module Day5  where
 
 import Data.List
-import Text.ParserCombinators.Parsec hiding (space)
-import System.Exit
-import System.IO
+import Text.Parsec hiding (space)
+import qualified Parser
 
 isStraigthLine:: Vent -> Bool
 isStraigthLine ((x0, y0), (x1, y1)) = (x0==x1) || (y0==y1)
@@ -34,7 +33,7 @@ type Vent = (Coord, Coord)
 type Coord = (Int, Int)
 
 -- PARSER --
-day5File = do 
+file = do 
   vents <- many1 vent
   eof
   return vents
@@ -52,11 +51,7 @@ coord = do
 number = read <$> many1 (oneOf "0123456789")
 
 parseInput:: IO [Vent]
-parseInput = parseFromFile day5File "inp/05.txt" >>= either report return
-  where 
-    report err = do
-      hPutStrLn stderr $ "Error: " ++ show err
-      exitFailure
+parseInput = Parser.parseFile file "05.txt"
 
 -- solutions
 part1 = do

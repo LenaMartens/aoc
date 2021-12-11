@@ -2,13 +2,10 @@ module Day3 where
 
 import Data.List
 import Data.Char
-import Text.ParserCombinators.Parsec hiding (count)
-import Text.Parsec.String (parseFromFile)
-import Control.Exception
-import System.Exit
-import System.IO
+import Text.Parsec
+import qualified Parser
 
-count x = length . filter (x==)
+countOcc x = length . filter (x==)
 
 filterBits:: ([Int]->Int) -> [[Int]] -> [Int] -> Int -> [Int]
 filterBits _ [one] _ _ = one
@@ -22,7 +19,7 @@ least ls
   | zeros <= ones = 0
   | ones < zeros = 1
   where
-    zeros = count 0 ls
+    zeros = countOcc 0 ls
     ones = length ls - zeros
 
 most:: [Int] -> Int
@@ -31,22 +28,18 @@ most ls
   | zeros > ones = 0
   | ones >= zeros = 1
   where
-    zeros = count 0 ls
+    zeros = countOcc 0 ls
     ones = length ls - zeros
 
 unDigits base = foldl (\ a b -> a * base + b) 0
 -- PARSER
-day3File = many (line <* eol) <* eof
+file = many (line <* eol) <* eof
 line = many binDigit
 binDigit = digitToInt <$> oneOf "01"
 eol = char '\n'
 
 parseInput:: IO [[Int]]
-parseInput = parseFromFile day3File "inp/03.txt" >>= either report return
-  where 
-    report err = do
-      hPutStrLn stderr $ "Error: " ++ show err
-      exitFailure
+parseInput = Parser.parseFile file "03.txt"
 
 -- TODO: reconstruct part 1
 part2 = do
