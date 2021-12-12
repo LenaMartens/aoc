@@ -1,4 +1,4 @@
-module Day4 where
+module Day4 (title, part1, part2) where
 
 import Data.List
 import Text.Parsec hiding (space)
@@ -35,7 +35,7 @@ playBingo (cur:rs) cards =
      Nothing -> playBingo rs updatedCards
 
 playBingoWithSquid:: [Int] -> [TrackedBingoCard] -> (Int, TrackedBingoCard)
-playBingoWithSquid nums [card] = playBingo nums [card]
+playBingoWithSquid nums [card]    = playBingo nums [card]
 playBingoWithSquid (cur:rs) cards = playBingoWithSquid rs filteredCards
   where
     updatedCards = map (mark cur) cards
@@ -67,7 +67,8 @@ space  = char ' '
 parseInput:: IO ([Int], [BingoCard])
 parseInput = Parser.parseFile file "04.txt"
 
--- solutions
+--export
+title = "bingo with a squid"
 part1 = do
   (nums, cards) <- parseInput
   let (num, tc) = playBingo nums $ map initialTracking cards

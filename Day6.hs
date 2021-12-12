@@ -1,5 +1,5 @@
 {-# LANGUAGE FlexibleContexts #-}
-module Day6 where
+module Day6 (title, part1, part2) where
 
 import Data.List
 import qualified Data.Map as Map
@@ -37,6 +37,7 @@ parseInput:: IO [Int]
 parseInput = Parser.parseFile file "06.txt"
 
 -- solutions
+title = "lanternfish generations"
 part1 = do
   inp <- parseInput
   print $ length $ advanceN 80 inp

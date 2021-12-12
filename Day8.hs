@@ -1,4 +1,4 @@
-module Day8 where
+module Day8 (title, part1, part2) where
 
 import Data.Tuple
 import qualified Data.Map as M
@@ -85,6 +85,8 @@ space = char ' '
 parseInput:: IO [FullReading]
 parseInput = Parser.parseFile file "08.txt"
 
+--export
+title = "faulty display decoding"
 part1 = do
   inp <- parseInput
   print $ length $ allEasyNumbers inp

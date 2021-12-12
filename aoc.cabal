@@ -26,7 +26,8 @@ executable aoc
       parsec,
       containers,
       monad-memo,
-      Stack
+      Stack,
+      timeit
   ghc-options: -Wno-missing-home-modules
 
 

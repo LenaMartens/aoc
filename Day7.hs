@@ -1,4 +1,4 @@
-module Day7 where
+module Day7 (title, part1, part2) where
 
 import Data.List
 import Data.Function
@@ -25,6 +25,8 @@ number = read <$> many1 (oneOf "0123456789")
 parseInput:: IO [Int]
 parseInput = Parser.parseFile file "07.txt"
 
+--export
+title = "crab fuel optimization"
 part1 = do
   inp <- parseInput
   print $ snd $ findClosest distance1 inp

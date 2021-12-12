@@ -1,4 +1,4 @@
-module Day5  where
+module Day5 (title, part1, part2) where
 
 import Data.List
 import Text.Parsec hiding (space)
@@ -53,7 +53,8 @@ number = read <$> many1 (oneOf "0123456789")
 parseInput:: IO [Vent]
 parseInput = Parser.parseFile file "05.txt"
 
--- solutions
+-- export
+title = "dangerous vents"
 part1 = do
   inp <- parseInput
   let coveredCoords = concatMap expand $ filter isStraigthLine inp

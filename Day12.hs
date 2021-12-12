@@ -1,4 +1,4 @@
-module Day12 where
+module Day12 (title, part1, part2) where
 
 import Debug.Trace
 import Data.List
@@ -31,7 +31,7 @@ canVisit1 cave@(Small _) visited = cave `notElem` visited
 canVisit1 _ _ = True
 
 --args:    graph     canVisit                 visited    start   paths
-allPaths:: Graph -> (Cave -> [Cave]-> Bool) -> [Cave] -> Cave -> [[Cave]]
+allPaths:: Graph -> (Cave -> [Cave] -> Bool) -> [Cave] -> Cave -> [[Cave]]
 allPaths graph canVisit visited startingNode
   | not (canVisit startingNode visited) = []
   | End == startingNode                 = [[End]]
@@ -67,12 +67,12 @@ eol = char '\n'
 parseInput:: IO Graph
 parseInput = Parser.parseFile file "12.txt"
 
+--export
+title = "cave path-finder"
 part1 = do
   inp <- parseInput
-  let res = allPaths inp canVisit1 [] Start
-  print $ length res
+  print $ length $ allPaths inp canVisit1 [] Start
 
 part2 = do
   inp <- parseInput
-  let res = allPaths inp canVisit2 [] Start
-  print $ length res
+  print $ length $ allPaths inp canVisit2 [] Start

@@ -1,5 +1,5 @@
 {-# LANGUAGE ParallelListComp #-}
-module Day9 where
+module Day9 (title, part1, part2) where
 
 import Data.List
 import Data.Function
@@ -59,6 +59,8 @@ eol = char '\n'
 parseInput:: IO [[Int]]
 parseInput = Parser.parseFile file "09.txt"
 
+--export
+title = "bassin clustering"
 part1 = do
   inp <- parseInput
   print $ allDanger inp

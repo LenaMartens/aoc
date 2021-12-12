@@ -1,5 +1,5 @@
 {-# LANGUAGE ParallelListComp #-}
-module Day11 where
+module Day11 (title, part1, part2) where
 
 import Data.List
 import Data.Char
@@ -17,7 +17,7 @@ reset x
 
 flash:: Int -> [[Int]] -> (Int, [[Int]])
 flash count grid
-  -- propagate remaing to-be-flashed and count them
+  -- propagate remaining to-be-flashed and count them
   | any (elem 10) grid = flash (count+countTens grid) $ propagateFlashes grid
   -- no more to-be-flashed
   | otherwise          = (count, map (map reset) grid)
@@ -66,6 +66,9 @@ number = digitToInt <$> digit
 eol = char '\n'
 
 parseInput = Parser.parseFile file "11.txt"
+
+-- export
+title = "flashing octupi"
 
 part1 = do
   inp <- parseInput

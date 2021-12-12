@@ -1,4 +1,4 @@
-module Day10 where
+module Day10 (title, part1, part2) where
 
 import Data.List
 import Data.Stack
@@ -74,6 +74,9 @@ eol = char '\n'
 
 parseInput:: IO [String]
 parseInput = Parser.parseFile file "10.txt"
+
+-- export
+title = "checking brackets"
 
 part1 = do
   inp <- parseInput

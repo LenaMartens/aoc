@@ -1,4 +1,4 @@
-module DayN where
+module DayN (title, part1, part2) where
 
 import Data.List
 import Text.Parsec
@@ -12,6 +12,9 @@ eol = char '\n'
 
 parseInput:: IO [String]
 parseInput = Parser.parseFile file "N.txt"
+
+-- public export
+title = "template"
 
 part1 = do
   inp <- parseInput
