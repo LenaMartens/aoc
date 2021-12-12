@@ -8,9 +8,9 @@ import Data.Char
 import Parser
 
 neighborIdx:: (Int, Int) -> (Int, Int) -> [(Int, Int)]
-neighborIdx (boundx, boundy) (x, y) = [(x+xd, y+yd) | 
+neighborIdx (boundx, boundy) (x, y) = [(x+xd, y+yd) |
                                        xd <- [-1, 0, 1],
-                                       yd <- [-1, 0, 1], 
+                                       yd <- [-1, 0, 1],
                                        abs(xd+yd)==1,
                                        x+xd <= boundx, y+yd <= boundy,
                                        x+xd > -1, y+yd > -1]
@@ -23,7 +23,7 @@ danger:: [[Int]] -> Int -> (Int, Int) -> Int
 danger grid curr coord
   | minimum (map lookup2D (neighborIdx (bounds grid) coord)) > curr = curr + 1
   | otherwise = 0
-  where lookup2D (x, y) = grid!!x!!y 
+  where lookup2D (x, y) = grid!!x!!y
 
 allDanger grid = sum [sum [danger grid curr (x, y)
                            | curr <- row  | y <- [0..]]
@@ -36,7 +36,7 @@ startSearch grid = findBassins grid [] (allCoords grid) []
 findBassins:: [[Int]] -> [(Int, Int)] -> [(Int, Int)] -> [[(Int, Int)]] -> [[(Int, Int)]]
 findBassins _ _ [] bassins = bassins
 findBassins grid seen (curr@(x, y):rst) bassins = findBassins grid (seen++bassin) rst (bassins++[bassin])
-  where bassin = if (curr `elem` seen) || (grid!!x!!y == 9)
+  where bassin = if curr `elem` seen || grid!!x!!y == 9
                  then []
                  else expand grid [] [curr]
 
@@ -61,10 +61,6 @@ parseInput = Parser.parseFile file "09.txt"
 
 --export
 title = "bassin clustering"
-part1 = do
-  inp <- parseInput
-  print $ allDanger inp
+part1 = do allDanger <$> parseInput
 
-part2 = do
-  inp <- parseInput
-  print $ sumThreeLargest $ startSearch inp
+part2 = do sumThreeLargest . startSearch <$> parseInput

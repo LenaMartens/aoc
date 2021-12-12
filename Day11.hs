@@ -26,7 +26,7 @@ propagateFlashes grid = n
   where n = [[curb a (countTens (slice2d (x, y) grid))
               | a   <- row  | y <- [0..]]
               | row <- grid | x <- [0..]]
-        curb num tens = if num < 10 
+        curb num tens = if num < 10
                          then min (num+tens) 10 -- will flash in next iteration
                          else 11                -- already flashed so advance beyond flash
 
@@ -70,10 +70,6 @@ parseInput = Parser.parseFile file "11.txt"
 -- export
 title = "flashing octupi"
 
-part1 = do
-  inp <- parseInput
-  print $ fst $ steps 100 inp
+part1 = do fst . steps 100 <$> parseInput
 
-part2 = do
-  inp <- parseInput
-  print $ fromJust $ firstSync inp
+part2 = do fromJust . firstSync <$> parseInput

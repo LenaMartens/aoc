@@ -36,8 +36,8 @@ title = "diving instructions"
 part1 = do
   input <- readInput
   let (x, y) = foldl updatePos (0, 0) input
-  print (x*y)
+  return (x*y)
 part2 = do
   input <- readInput
   let (x, y, _) = foldl updateAim (0, 0, 0) input
-  print (x*y)
+  return (x*y)

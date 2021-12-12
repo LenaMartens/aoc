@@ -58,9 +58,9 @@ title = "dangerous vents"
 part1 = do
   inp <- parseInput
   let coveredCoords = concatMap expand $ filter isStraigthLine inp
-  print $ countDanger $ groupOccurences coveredCoords
+  return $ countDanger $ groupOccurences coveredCoords
 
 part2 = do
   inp <- parseInput
   let coveredCoords = concatMap expand inp
-  print $ countDanger $ groupOccurences coveredCoords
+  return $ countDanger $ groupOccurences coveredCoords

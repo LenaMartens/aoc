@@ -78,11 +78,9 @@ parseInput = Parser.parseFile file "10.txt"
 -- export
 title = "checking brackets"
 
-part1 = do
-  inp <- parseInput
-  print $ sum $ map (score1.parseIncorrect) inp
+part1 = do sum . map (score1 . parseIncorrect) <$> parseInput
 
 part2 = do
   inp <- parseInput
   let completed = map complete $ onlyCorrects inp
-  print $ median $ map (foldl scoreCompletion 0) completed
+  return $ median $ map (foldl scoreCompletion 0) completed

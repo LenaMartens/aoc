@@ -12,17 +12,17 @@ import Data.Foldable (Foldable(toList))
 easyDisplays = [2, 3, 4, 7]
 displays = ["abcefg", "cf", "acdeg", "acdfg", "bcdf", "abdfg", "abdefg", "acf", "abcdefg", "abcdfg"]
 
-canonical:: [Char] -> Int 
-canonical  "abcefg"   =  0 
-canonical  "cf"       =  1 
-canonical  "acdeg"    =  2 
-canonical  "acdfg"    =  3 
-canonical  "bcdf"     =  4 
-canonical  "abdfg"    =  5 
-canonical  "abdefg"   =  6 
-canonical  "acf"      =  7 
-canonical  "abcdefg"  =  8 
-canonical  "abcdfg"   =  9 
+canonical:: String -> Int
+canonical  "abcefg"   =  0
+canonical  "cf"       =  1
+canonical  "acdeg"    =  2
+canonical  "acdfg"    =  3
+canonical  "bcdf"     =  4
+canonical  "abdfg"    =  5
+canonical  "abdefg"   =  6
+canonical  "acf"      =  7
+canonical  "abcdefg"  =  8
+canonical  "abcdfg"   =  9
 canonical  _          = 666
 
 -- part 1
@@ -41,7 +41,7 @@ invert m = M.fromList invertedList
   where invertedList = map swap $ M.toList m
 
 generateFaultyDisplays:: M.Map Char Char -> [String]
-generateFaultyDisplays mapping = sort $ map (convert mapping) displays 
+generateFaultyDisplays mapping = sort $ map (convert mapping) displays
 
 convert:: M.Map Char Char -> String -> String
 convert mapping = sort . map lookup
@@ -51,7 +51,7 @@ findMatchingMapping:: DisplaySamples -> Maybe (M.Map Char Char)
 findMatchingMapping readings = find (matching readings) allMappings
 
 matching readings m = readings == generateFaultyDisplays m
-  
+
 search readings = findMatchingMapping $ sort $ map sort readings
 getMapping = invert.fromJust.search
 
@@ -87,10 +87,6 @@ parseInput = Parser.parseFile file "08.txt"
 
 --export
 title = "faulty display decoding"
-part1 = do
-  inp <- parseInput
-  print $ length $ allEasyNumbers inp
+part1 = do length . allEasyNumbers <$> parseInput
 
-part2 = do
-  inp <- parseInput
-  print $ sum $ map fullDecode inp
+part2 = do sum . map fullDecode <$> parseInput

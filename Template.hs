@@ -18,8 +18,8 @@ title = "template"
 
 part1 = do
   inp <- parseInput
-  print inp
+  return inp
 
 part2 = do
   inp <- parseInput
-  print inp
+  return inp

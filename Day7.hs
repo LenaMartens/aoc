@@ -7,7 +7,7 @@ import qualified Parser
 
 findClosest:: ([Int] -> Int -> (Int, Int)) -> [Int] -> (Int, Int)
 findClosest distanceF from = minimumBy (compare `on` snd) distances
-  where 
+  where
     searchList = [(minimum from)..(maximum from)]
     distances = map (distanceF from) searchList
 
@@ -27,10 +27,6 @@ parseInput = Parser.parseFile file "07.txt"
 
 --export
 title = "crab fuel optimization"
-part1 = do
-  inp <- parseInput
-  print $ snd $ findClosest distance1 inp
+part1 = do snd . findClosest distance1 <$> parseInput
 
-part2 = do
-  inp <- parseInput
-  print $ snd $ findClosest distance2 inp
+part2 = do snd . findClosest distance2 <$> parseInput

@@ -71,8 +71,8 @@ parseInput = Parser.parseFile file "12.txt"
 title = "cave path-finder"
 part1 = do
   inp <- parseInput
-  print $ length $ allPaths inp canVisit1 [] Start
+  return $ length $ allPaths inp canVisit1 [] Start
 
 part2 = do
   inp <- parseInput
-  print $ length $ allPaths inp canVisit2 [] Start
+  return $ length $ allPaths inp canVisit2 [] Start

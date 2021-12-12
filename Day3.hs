@@ -47,10 +47,10 @@ part1 = do
   inp <- parseInput
   let gamma   = unDigits 2 $ map most  (transpose inp)
   let epsilon = unDigits 2 $ map least (transpose inp)
-  print (gamma*epsilon)
+  return (gamma*epsilon)
 
 part2 = do
   input <- parseInput
   let oxygen = unDigits 2 $ filterBits most  input [] 0
   let co2    = unDigits 2 $ filterBits least input [] 0
-  print (oxygen*co2)
+  return (oxygen*co2)

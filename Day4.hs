@@ -72,9 +72,9 @@ title = "bingo with a squid"
 part1 = do
   (nums, cards) <- parseInput
   let (num, tc) = playBingo nums $ map initialTracking cards
-  print $ num * score tc
+  return $ num * score tc
 
 part2 = do
   (nums, cards) <- parseInput
   let (num, tc) = playBingoWithSquid nums $ map initialTracking cards
-  print $ num * score tc
+  return $ num * score tc

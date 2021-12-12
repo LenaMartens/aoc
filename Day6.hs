@@ -40,8 +40,8 @@ parseInput = Parser.parseFile file "06.txt"
 title = "lanternfish generations"
 part1 = do
   inp <- parseInput
-  print $ length $ advanceN 80 inp
+  return $ sum $ iterate advanceBuckets (initialBuckets inp)!!80
 
 part2 = do
   inp <- parseInput
-  print $ sum $ iterate advanceBuckets (initialBuckets inp)!!256
+  return $ sum $ iterate advanceBuckets (initialBuckets inp)!!256
