@@ -10,6 +10,7 @@ import qualified Day8
 import qualified Day9
 import qualified Day10
 import qualified Day11
+import qualified Day12
 
 divider num = replicate 7 '-' ++"day "++ show num ++ replicate 7 '-'
 printDivider num = putStrLn $ divider num
@@ -43,3 +44,6 @@ main = do
   printDivider 11
   Day11.part1
   Day11.part2
+  printDivider 12
+  Day12.part1
+  Day12.part2
