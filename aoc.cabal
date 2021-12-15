@@ -21,6 +21,7 @@ executable aoc
                 Day11,
                 Day12,
                 Day13,
+                Day14,
                 Parser
   build-depends:
       base >=4.13 && <4.14,

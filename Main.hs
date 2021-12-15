@@ -15,9 +15,11 @@ import qualified Day9
 import qualified Day10
 import qualified Day11
 import qualified Day12
+import qualified Day14
 
 printPart num part expected = do
   putStr $ "| Part " ++ show num ++ ": "
+  -- TODO: fix timing (foiled by thunks!)
   (!time, !partRes) <- timeItT part
   -- puzzle result
   putStr (show partRes)
@@ -58,3 +60,5 @@ main = do
   printDay 10 Day10.title Day10.part1 Day10.part2 215229  1105996483
   printDay 11 Day11.title Day11.part1 Day11.part2 1735    400
   printDay 12 Day12.title Day12.part1 Day12.part2 3738    120506
+  -- TODO: add Day13 (output is not an int!)
+  printDay 14 Day14.title Day14.part1 Day14.part2 Day14.exp0 Day14.exp1
