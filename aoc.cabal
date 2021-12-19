@@ -3,7 +3,6 @@ name:                aoc
 version:             0.1.0.0
 author:              Lena Martens
 build-type:          Simple
-extra-source-files:  CHANGELOG.md
 
 executable aoc
   main-is:             Main.hs
@@ -23,9 +22,11 @@ executable aoc
                 Day13,
                 Day14,
                 Day15,
+                Day16,
+                Day17,
                 Parser
   build-depends:
-      base >=4.13 && <4.14,
+      base >=4.14 && <4.15,
       split,
       parsec,
       containers,

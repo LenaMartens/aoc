@@ -1,5 +1,5 @@
 {-# LANGUAGE ParallelListComp #-}
-module DayN (title, part1, part2) where
+module Day15 (title, part1, part2) where
 
 import Data.List
 import Text.Parsec
@@ -16,6 +16,8 @@ import qualified Data.HashSet as HS
 enumerate:: [[a]] -> Map (Int, Int) a
 enumerate grid = M.fromList $ concat [[((x, y), a) | a <- row    | y <- [0..]]
                                | row <- grid | x <- [0..]]
+
+mysum ls = sum ls 
 
 neighbs:: (Int, Int) -> [(Int, Int)]
 neighbs (x, y) = [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
